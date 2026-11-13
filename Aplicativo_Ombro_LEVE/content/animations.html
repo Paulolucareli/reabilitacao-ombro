@@ -1,0 +1,54 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff;color:#173447;font:16px system-ui,sans-serif}main{border:1px solid #d6e2e9;border-radius:16px;padding:18px}h3{margin:0 0 8px;font-size:22px}p{line-height:1.45;margin:10px 0;min-height:70px}svg{display:block;width:100%;height:auto;max-height:300px;background:#f1f6f8;border-radius:12px}svg text{font:19px system-ui;fill:#173447}button{min-height:44px;border:0;background:#125d76;color:white;padding:8px 16px;border-radius:7px;cursor:pointer}button:focus,input:focus{outline:3px solid #e1a833;outline-offset:3px}.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0}input{width:100%;height:32px}.tag{font-size:13px;color:#536977}#time{margin-left:auto}small{display:block;line-height:1.4}@media(max-width:420px){main{padding:10px}h3{font-size:19px}body{font-size:14px}p{min-height:95px}}
+</style>
+<main><div class="tag">MECÂNICA EM 24 SEGUNDOS · ESQUEMA DIDÁTICO</div><h3 id="title"></h3>
+<svg viewBox="0 0 720 300" role="img" aria-labelledby="title"><defs><marker id="tip" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="context-stroke"/></marker></defs><g id="drawing"></g></svg>
+<p id="caption" aria-live="polite"></p>
+<div class="controls"><button id="play" aria-label="Reproduzir animação">Reproduzir</button><button id="restart">Reiniciar</button><span id="time">0 / 24 s</span></div>
+<label for="seek">Posição da animação</label><input id="seek" type="range" min="0" max="24" step="0.1" value="0">
+<small id="ref"></small></main>
+<script>
+const scene=__SCENE__;
+const names=['Ritmo escapuloumeral','Pares de força','Discinese e alamento','Luxação anterior'];
+const refs=['Ombro v2 · páginas 9–10','Ombro v2 · páginas 7–8; Atletas 2026 · página 13','Ombro v2 · páginas 12–14 e 18','Ombro v2 · página 60; Atletas 2026 · páginas 37–38 e 42'];
+const captions=[
+['A elevação combina movimento glenoumeral e movimento da escápula. Observe o úmero (azul) e a escápula (verde), em vista posterior simplificada.','A escápula roda superiormente. Também ocorrem inclinação posterior e rotação externa, movimentos tridimensionais que este desenho plano não mede.','A razão 2:1 é uma média didática. Não é uma regra rígida para cada instante ou para cada pessoa.'],
+['O deltoide (seta laranja) contribui para elevar o braço. A estabilidade depende da ação coordenada de vários músculos.','As setas verdes simbolizam a ação do manguito: compressão e componentes de força que contribuem para o centramento da cabeça umeral.','O equilíbrio de forças favorece a estabilidade dinâmica. Este modelo não demonstra uma causa única para a dor no ombro.'],
+['Discinese é uma alteração observada no movimento da escápula. À esquerda, o desenho destaca uma trajetória variável, que deve ser avaliada durante a tarefa.','À direita, o corte transversal ilustra a borda medial se afastando do tórax: alamento. O desenho não permite concluir a sua causa.','Alamento persistente com fraqueza importante pode exigir investigação neurológica. Discinese funcional e alamento por lesão nervosa não são sinônimos.'],
+['Vista superior esquemática: anterior está para baixo. Na luxação anterior, a cabeça umeral perde sua relação habitual com a glenoide.','O deslocamento anterior pode associar-se a lesões do lábio anteroinferior (Bankart) e a uma impressão na cabeça umeral posterolateral (Hill-Sachs).','Em vermelho: junto à glenoide, Bankart; na cabeça umeral, Hill-Sachs. As lesões variam entre pessoas. O esquema não demonstra manobras de redução.']
+];
+document.querySelector('#title').textContent=names[scene];document.querySelector('#ref').textContent='Fonte: '+refs[scene]+'. Movimentos e vetores sem escala.';
+const drawing=document.querySelector('#drawing'), cap=document.querySelector('#caption'),seek=document.querySelector('#seek'),button=document.querySelector('#play');
+let t=0,playing=false,last=null,phase=-1;
+const line=(x1,y1,x2,y2,color,w=6)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" marker-end="url(#tip)"/>`;
+const text=(x,y,s)=>`<text x="${x}" y="${y}">${s}</text>`;
+function render(){
+ let part=Math.min(2,Math.floor(t/8));if(part!==phase){cap.textContent=captions[scene][part];phase=part;}
+ let p=Math.min(1,t/20);let s='';
+ if(scene===0){
+  const a=-p*50,b=p*150,rad=b*Math.PI/180;
+  s=`<path d="M340 25L340 280M245 30Q210 160 250 275" stroke="#c4d2db" stroke-width="12" fill="none"/>
+  <g transform="rotate(${a} 340 115)"><path d="M330 78L235 132L285 230Z" fill="#a7dace" stroke="#197e70" stroke-width="5"/><circle cx="340" cy="115" r="12" fill="#197e70"/></g>
+  <line x1="340" y1="115" x2="${340+120*Math.sin(rad)}" y2="${115+120*Math.cos(rad)}" stroke="#287eaf" stroke-width="22" stroke-linecap="round"/>`+text(40,40,'Ombro direito · vista posterior')+text(450,180,'Úmero')+text(85,240,'Escápula')+text(450,225,'Elevação coordenada');
+ }else if(scene===1){
+  s=`<path d="M270 45L340 95L340 210L280 255Z" fill="#a7dace" stroke="#197e70" stroke-width="5"/><circle cx="400" cy="150" r="58" fill="#d5e6ef" stroke="#287eaf" stroke-width="5"/><path d="M425 195L500 275" stroke="#287eaf" stroke-width="28"/>`+text(40,35,'Modelo de forças')+text(460,80,'Deltoide')+line(415,130,425,45,'#cb781e');
+  if(t>=8){let opacity=Math.min(1,(t-8)/4);s+=`<g opacity="${opacity}">`+line(400,150,325,150,'#197e70')+line(385,170,350,220,'#197e70')+text(55,155,'Manguito')+'</g>';}
+  s+=text(450,235,'Cabeça umeral');
+ }else if(scene===2){
+  let a=12*Math.sin(t/4),gap=t<8?10:10+35*Math.min(1,(t-8)/8);
+  s=`<path d="M200 60L200 275" stroke="#c4d2db" stroke-width="12"/><g transform="rotate(${a} 235 120)"><path d="M250 95L155 150L210 250Z" fill="#a7dace" stroke="#197e70" stroke-width="5"/></g>`+text(35,35,'Movimento · vista posterior')+text(400,35,'Alamento · corte transversal')+`<ellipse cx="535" cy="185" rx="125" ry="65" fill="#e3eaf0" stroke="#a4b7c5" stroke-width="4"/><path d="M440 155L${565} ${120-gap}" stroke="#197e70" stroke-width="12" stroke-linecap="round"/>`+line(565,145,565,120-gap,'#c65450',3)+text(450,235,'Tórax')+text(420,280,'Borda medial afastada');
+ }else{
+  let delta=t<8?0:Math.min(1,(t-8)/10)*85;
+  s=`<path d="M255 70L335 95Q365 140 335 180L255 215Z" fill="#a7dace" stroke="#197e70" stroke-width="5"/><g transform="translate(0 ${delta})"><circle cx="410" cy="130" r="54" fill="#d5e6ef" stroke="#287eaf" stroke-width="5"/><path d="M460 145L610 180" stroke="#287eaf" stroke-width="26"/></g>`+text(35,40,'Vista superior')+text(35,95,'Posterior ↑')+text(35,270,'Anterior ↓')+text(200,270,'Glenoide');
+  if(t>=8)s+=line(410,125,410,125+delta,'#cb781e',4);
+  if(t>=16)s+=`<path d="M340 155L350 180" stroke="#c65450" stroke-width="9"/><circle cx="440" cy="${98+delta}" r="10" fill="#c65450"/>`+text(455,40,'Vermelho: regiões de lesão');
+ }
+ drawing.innerHTML=s;seek.value=t;document.querySelector('#time').textContent=Math.round(t)+' / 24 s';
+}
+function stop(){playing=false;last=null;button.textContent='Reproduzir';button.setAttribute('aria-label','Reproduzir animação');}
+function frame(now){if(!playing)return;if(last!==null)t=Math.min(24,t+(now-last)/1000);last=now;render();if(t>=24)stop();else requestAnimationFrame(frame);}
+button.onclick=()=>{if(playing)stop();else{if(t>=24)t=0;playing=true;last=null;button.textContent='Pausar';button.setAttribute('aria-label','Pausar animação');requestAnimationFrame(frame);}};
+document.querySelector('#restart').onclick=()=>{stop();t=0;render();};seek.oninput=()=>{stop();t=Number(seek.value);render();};
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});render();
+</script></html>

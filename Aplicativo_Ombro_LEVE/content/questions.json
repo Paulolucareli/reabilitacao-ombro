@@ -1,0 +1,639 @@
+{
+  "version": "2026.11.13-1",
+  "questions": [
+    {
+      "id": "Q01",
+      "topic": "Anatomia e biomecânica",
+      "stem": "Qual conjunto reúne apenas articulações verdadeiras do complexo do ombro?",
+      "options": [
+        "Glenoumeral, acromioclavicular e esternoclavicular.",
+        "Escapulotorácica, subacromial e esternoclavicular.",
+        "Acromioclavicular, escapulotorácica e subacromial.",
+        "Glenoumeral, escapulotorácica e subacromial."
+      ],
+      "answer": 0,
+      "comment": "O slide distingue as três articulações verdadeiras das interfaces funcionais escapulotorácica e subacromial.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 5
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "topic": "Anatomia e biomecânica",
+      "stem": "No modelo de pares de força apresentado na aula, qual é o papel do manguito durante a elevação?",
+      "options": [
+        "Contribuir para estabilizar e centrar a cabeça umeral.",
+        "Eliminar a necessidade dos estabilizadores escapulares.",
+        "Produzir translação superior como objetivo do treinamento.",
+        "Substituir completamente a ação do deltoide."
+      ],
+      "answer": 0,
+      "comment": "A ação coordenada do manguito e do deltoide favorece a estabilidade dinâmica. O esquema mecânico do slide não explica, sozinho, todas as causas de dor.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 7
+        },
+        {
+          "source": "ombro",
+          "page": 8
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "topic": "Anatomia e biomecânica",
+      "stem": "Como interpretar a razão 2:1 do ritmo escapuloumeral na aula?",
+      "options": [
+        "Como uma média da contribuição glenoumeral e escapular.",
+        "Como dois graus escapulares para cada grau glenoumeral.",
+        "Como ausência de movimento escapular durante a elevação.",
+        "Como uma proporção obrigatória em todos os graus da elevação."
+      ],
+      "answer": 0,
+      "comment": "A razão é uma média. A aula também descreve rotação superior, inclinação posterior e rotação externa da escápula na elevação.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 9
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "topic": "Discinese escapular",
+      "stem": "Uma assimetria escapular observada apenas em repouso permite concluir o quê?",
+      "options": [
+        "Existe necessariamente discinese dolorosa.",
+        "Há uma posição diferente; o movimento ainda precisa ser avaliado.",
+        "Há lesão comprovada do nervo torácico longo.",
+        "O teste de assistência escapular será obrigatoriamente positivo."
+      ],
+      "answer": 1,
+      "comment": "Discinese é avaliada durante o movimento. A posição em repouso não basta para classificá-la.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 12
+        }
+      ]
+    },
+    {
+      "id": "Q05",
+      "topic": "Discinese escapular",
+      "stem": "Alamento persistente por comprometimento do nervo torácico longo está relacionado principalmente a qual músculo?",
+      "options": [
+        "Infraespinal.",
+        "Deltoide.",
+        "Subescapular.",
+        "Serrátil anterior."
+      ],
+      "answer": 3,
+      "comment": "O slide relaciona torácico longo ao serrátil anterior e nervo acessório ao trapézio. Fraqueza marcada e persistente pede investigação neurológica; não deve ser presumida apenas pela aparência.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 13
+        },
+        {
+          "source": "ombro",
+          "page": 14
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "topic": "Discinese escapular",
+      "stem": "Durante o SAT, o examinador auxilia a escápula e a dor na elevação diminui. Como interpretar esse achado?",
+      "options": [
+        "O teste comprova rotura completa do manguito.",
+        "A modificação escapular reduziu os sintomas naquela tarefa.",
+        "É necessário impedir qualquer elevação do braço.",
+        "Toda a dor é causada exclusivamente pela escápula."
+      ],
+      "answer": 1,
+      "comment": "O SAT positivo corresponde à redução da dor com assistência. A resposta orienta a modificação dos sintomas sem identificar uma causa estrutural única.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 18
+        },
+        {
+          "source": "ombro",
+          "page": 33
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "topic": "Discinese escapular",
+      "stem": "A aula mostra pessoas com discinese e sem dor. Qual interpretação é mais adequada?",
+      "options": [
+        "Quem não tem dor nunca apresenta discinese.",
+        "A discinese sempre provoca dor.",
+        "Discinese pode coexistir com ausência de dor e deve ser contextualizada no exame.",
+        "Uma associação de risco prova a causa da dor de cada pessoa."
+      ],
+      "answer": 2,
+      "comment": "Os exemplos mostram combinações distintas de dor e discinese. A associação relatada no slide 21 não autoriza concluir causalidade individual.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 20
+        },
+        {
+          "source": "ombro",
+          "page": 21
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "topic": "Dor relacionada ao manguito",
+      "stem": "Qual orientação é coerente com o bloco sobre terminologia e comunicação?",
+      "options": [
+        "Explicar a sensibilidade e ajustar a carga, usando linguagem que favoreça o movimento.",
+        "Orientar evitação permanente de qualquer elevação.",
+        "Dizer que o tendão está prestes a romper apenas porque há dor.",
+        "Afirmar que toda dor decorre de esmagamento pelo acrômio."
+      ],
+      "answer": 0,
+      "comment": "A aula usa dor relacionada ao manguito e propõe educação, ajuste de carga e linguagem que reduza medo, sem invalidar a dor.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 24
+        },
+        {
+          "source": "ombro",
+          "page": 41
+        },
+        {
+          "source": "ombro",
+          "page": 42
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "topic": "Dor relacionada ao manguito",
+      "stem": "Como usar um achado de imagem do manguito em uma pessoa com dor?",
+      "options": [
+        "Desconsiderar por completo a avaliação clínica.",
+        "Interpretá-lo junto à história e ao exame, pois alterações também ocorrem sem dor.",
+        "Indicar cirurgia para qualquer alteração descrita.",
+        "Considerá-lo prova suficiente da causa dos sintomas."
+      ],
+      "answer": 1,
+      "comment": "Alterações estruturais são frequentes em assintomáticos. O laudo isolado não determina a conduta.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 25
+        },
+        {
+          "source": "ombro",
+          "page": 34
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "topic": "Dor relacionada ao manguito",
+      "stem": "Na triagem apresentada, qual achado ajuda a considerar capsulite adesiva no diagnóstico diferencial?",
+      "options": [
+        "Assimetria escapular isolada em repouso.",
+        "Rotação externa passiva preservada como único achado.",
+        "Perda da rotação externa passiva.",
+        "Dor apenas à palpação do deltoide."
+      ],
+      "answer": 2,
+      "comment": "A aula destaca a perda passiva da rotação externa na capsulite. É um elemento do diagnóstico diferencial, não um diagnóstico isolado.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 27
+        },
+        {
+          "source": "ombro",
+          "page": 28
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "topic": "Dor relacionada ao manguito",
+      "stem": "Após infiltração recente, uma pessoa apresenta febre, ombro quente, avermelhado e dor intensa. Qual conduta está no slide de triagem?",
+      "options": [
+        "Iniciar resistência máxima e reavaliar em três meses.",
+        "Encaminhar para atendimento de emergência no mesmo dia.",
+        "Tratar apenas com exercícios domiciliares sem encaminhamento.",
+        "Atribuir os sinais exclusivamente ao medo do movimento."
+      ],
+      "answer": 1,
+      "comment": "O conjunto sugere possível infecção articular e exige avaliação no mesmo dia, conforme a bandeira vermelha da aula.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 29
+        },
+        {
+          "source": "ombro",
+          "page": 30
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "topic": "Dor relacionada ao manguito",
+      "stem": "Qual conclusão a aula apresenta sobre a descompressão subacromial isolada nos estudos CSAW e FIMPACT?",
+      "options": [
+        "Não apresentou ganho clinicamente relevante sobre cirurgia placebo.",
+        "Tornou dispensável a reabilitação por exercício.",
+        "Deve ser rotina para toda dor anterolateral.",
+        "Foi superior ao placebo em todos os desfechos."
+      ],
+      "answer": 0,
+      "comment": "A síntese dos ensaios no slide sustenta exercício como primeira linha e não recomenda descompressão isolada como rotina. Isso não abrange todas as indicações de cirurgia do ombro.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 35
+        },
+        {
+          "source": "ombro",
+          "page": 36
+        }
+      ]
+    },
+    {
+      "id": "Q13",
+      "topic": "Dor relacionada ao manguito",
+      "stem": "No processo de modificação de sintomas, o que vem depois de modificar a posição da escápula ou do tórax?",
+      "options": [
+        "Reavaliar dor e movimento para orientar o exercício.",
+        "Prescrever a mesma intervenção independentemente da resposta.",
+        "Concluir que uma estrutura específica está rompida.",
+        "Evitar que a pessoa execute novamente a tarefa."
+      ],
+      "answer": 0,
+      "comment": "A sequência é identificar a tarefa, modificar, reavaliar e transformar a estratégia útil em exercício.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 33
+        }
+      ]
+    },
+    {
+      "id": "Q14",
+      "topic": "Dor relacionada ao manguito",
+      "stem": "Qual fator deve orientar a progressão do exercício, além do tempo de tratamento?",
+      "options": [
+        "A exigência de dor máxima durante todas as séries.",
+        "Apenas a passagem de uma semana no calendário.",
+        "A presença de qualquer alteração no laudo, sem exame.",
+        "Dor, amplitude, controle e força."
+      ],
+      "answer": 3,
+      "comment": "A aula propõe progressão por critérios, acompanhando tolerância e função. As doses do slide são referências didáticas, não uma prescrição universal.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 37
+        },
+        {
+          "source": "ombro",
+          "page": 39
+        }
+      ]
+    },
+    {
+      "id": "Q15",
+      "topic": "Fraturas e luxações",
+      "stem": "Na avaliação de fratura do úmero proximal, qual exame neurovascular é destacado?",
+      "options": [
+        "Somente amplitude cervical e reflexo bicipital.",
+        "Nervo axilar e pulso radial.",
+        "Apenas força de flexão do cotovelo e sensibilidade do polegar.",
+        "Sensibilidade do nervo mediano e pulso ulnar como únicos itens."
+      ],
+      "answer": 1,
+      "comment": "Além da avaliação clínica e de imagem, o slide destaca o nervo axilar e o pulso radial.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 54
+        }
+      ]
+    },
+    {
+      "id": "Q16",
+      "topic": "Fraturas e luxações",
+      "stem": "Como interpretar os resultados do ProFHER apresentados na aula?",
+      "options": [
+        "Toda fratura-luxação foi incluída e deve ser tratada sem cirurgia.",
+        "Os resultados eliminam a importância do padrão da fratura.",
+        "Não houve superioridade da cirurgia no grupo estudado; a indicação permanece individualizada.",
+        "A cirurgia foi superior em todos os adultos."
+      ],
+      "answer": 2,
+      "comment": "A amostra envolveu fraturas desviadas do colo cirúrgico, com poucas fraturas em quatro partes e exclusão de fraturas-luxação. Não se deve extrapolar para todos os traumas.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 56
+        }
+      ]
+    },
+    {
+      "id": "Q17",
+      "topic": "Fraturas e luxações",
+      "stem": "Após fixação de uma fratura, o que deve ser esclarecido antes de progredir a reabilitação?",
+      "options": [
+        "Somente a preferência pelo equipamento da academia.",
+        "Nenhuma informação cirúrgica é necessária.",
+        "Estabilidade da fixação, reinserção dos tubérculos e movimentos liberados.",
+        "Apenas o número de dias até a próxima competição."
+      ],
+      "answer": 2,
+      "comment": "A aula orienta alinhar as restrições com o cirurgião e monitorar complicações. O calendário usual não substitui as condições da fixação.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 59
+        }
+      ]
+    },
+    {
+      "id": "Q18",
+      "topic": "Fraturas e luxações",
+      "stem": "Qual posição é associada ao mecanismo de instabilidade anterior traumática no material de atletas?",
+      "options": [
+        "Pronação isolada do antebraço.",
+        "Flexão isolada do cotovelo sem movimento do ombro.",
+        "Abdução com rotação externa extrema.",
+        "Adução com rotação interna como único mecanismo possível."
+      ],
+      "answer": 2,
+      "comment": "O slide 38 descreve esse mecanismo traumático; o slide 37 define instabilidade como incapacidade de manter a cabeça umeral na cavidade glenoide.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 37
+        },
+        {
+          "source": "atletas",
+          "page": 38
+        }
+      ]
+    },
+    {
+      "id": "Q19",
+      "topic": "Artroplastia",
+      "stem": "Qual situação é associada à artroplastia total anatômica no quadro da aula?",
+      "options": [
+        "Fratura complexa no idoso com osso de má qualidade como indicação típica.",
+        "Artrose com manguito íntegro.",
+        "Revisão com manguito deficiente como indicação típica.",
+        "Artropatia por rotura irreparável do manguito."
+      ],
+      "answer": 1,
+      "comment": "O quadro diferencia artroplastia anatômica com manguito íntegro das indicações de reversa, incluindo artropatia do manguito.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 64
+        }
+      ]
+    },
+    {
+      "id": "Q20",
+      "topic": "Artroplastia",
+      "stem": "Na biomecânica da artroplastia reversa apresentada, qual músculo assume papel central na elevação?",
+      "options": [
+        "Cabeça longa do bíceps como motor principal da elevação.",
+        "Supraespinal íntegro como requisito obrigatório.",
+        "Deltoide.",
+        "Subescapular como único motor da elevação."
+      ],
+      "answer": 2,
+      "comment": "A alteração do centro de rotação aumenta o braço de momento do deltoide. Boa elevação não implica necessariamente recuperação completa das rotações.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 65
+        }
+      ]
+    },
+    {
+      "id": "Q21",
+      "topic": "Artroplastia",
+      "stem": "Qual combinação de movimentos é destacada como posição de risco após artroplastia reversa?",
+      "options": [
+        "Extensão, abdução e rotação externa.",
+        "Flexão, adução e rotação externa.",
+        "Extensão, adução e rotação interna.",
+        "Flexão, abdução e rotação externa."
+      ],
+      "answer": 2,
+      "comment": "O slide exemplifica levar a mão às costas e empurrar-se para levantar da cadeira. As precauções devem seguir o procedimento e a equipe cirúrgica.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 68
+        },
+        {
+          "source": "ombro",
+          "page": 69
+        }
+      ]
+    },
+    {
+      "id": "Q22",
+      "topic": "Artroplastia",
+      "stem": "Na comparação da aula, qual estrutura merece proteção específica após artroplastia anatômica?",
+      "options": [
+        "Tendão do peitoral menor como reparo obrigatório.",
+        "Inserção do serrátil anterior como reparo obrigatório.",
+        "Tendão do redondo maior como reparo obrigatório.",
+        "Reparo do subescapular."
+      ],
+      "answer": 3,
+      "comment": "O quadro destaca o subescapular e o risco da rotação externa excessiva e da rotação interna resistida precoces. A liberação depende do protocolo cirúrgico.",
+      "refs": [
+        {
+          "source": "ombro",
+          "page": 67
+        },
+        {
+          "source": "ombro",
+          "page": 69
+        }
+      ]
+    },
+    {
+      "id": "Q23",
+      "topic": "Reabilitação esportiva",
+      "stem": "Qual par aparece como fatores modificáveis na aula de atletas?",
+      "options": [
+        "Déficit de amplitude (GIRD) e desequilíbrios musculares.",
+        "Sexo e histórico de lesão.",
+        "Lesões prévias e idade.",
+        "Idade e sexo."
+      ],
+      "answer": 0,
+      "comment": "O slide separa os déficits de amplitude e os desequilíbrios musculares dos fatores classificados como não modificáveis.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 14
+        }
+      ]
+    },
+    {
+      "id": "Q24",
+      "topic": "Reabilitação esportiva",
+      "stem": "Como o caso da nadadora é identificado na apresentação de 2026?",
+      "options": [
+        "Fratura da glenoide como diagnóstico principal.",
+        "Artroplastia reversa como condição inicial.",
+        "Rotura completa obrigatória do supraespinal.",
+        "Tendinopatia do manguito rotador sem rotura."
+      ],
+      "answer": 3,
+      "comment": "A versão de 2026 descreve explicitamente tendinopatia sem rotura. Se o vídeo anterior mencionar rotura parcial, utilize a descrição do PDF de 2026 para esta avaliação. Dados identificáveis do caso foram omitidos da questão.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 15
+        }
+      ]
+    },
+    {
+      "id": "Q25",
+      "topic": "Reabilitação esportiva",
+      "stem": "Qual é o foco da fase 1 do tratamento no material de atletas?",
+      "options": [
+        "Retorno imediato ao volume competitivo máximo.",
+        "Redução da dor e ganho ou manutenção da amplitude de movimento.",
+        "Imobilidade permanente de todo o membro superior.",
+        "Pliometria máxima independentemente da dor."
+      ],
+      "answer": 1,
+      "comment": "Esse foco aparece nos dois planos de tratamento. As fases organizam a reabilitação, mas não dispensam reavaliação individual.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 19
+        },
+        {
+          "source": "atletas",
+          "page": 46
+        }
+      ]
+    },
+    {
+      "id": "Q26",
+      "topic": "Reabilitação esportiva",
+      "stem": "Na fase de retorno à atividade da nadadora, qual princípio é destacado?",
+      "options": [
+        "Ignorar a modalidade praticada.",
+        "Usar apenas o calendário como critério de liberação.",
+        "Especificidade do treinamento.",
+        "Substituir definitivamente o gesto esportivo por repouso."
+      ],
+      "answer": 2,
+      "comment": "O slide relaciona treinamento à especificidade: a preparação funcional deve conversar com as demandas da atividade.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 34
+        }
+      ]
+    },
+    {
+      "id": "Q27",
+      "topic": "Reabilitação esportiva",
+      "stem": "Segundo a aula, o CKCUEST avalia principalmente qual aspecto?",
+      "options": [
+        "Integridade estrutural do lábio glenoidal.",
+        "Amplitude passiva de rotação interna isolada.",
+        "Força isométrica isolada dos rotadores externos.",
+        "Estabilidade dinâmica e potência muscular do membro superior em cadeia fechada."
+      ],
+      "answer": 3,
+      "comment": "O CKCUEST é apresentado como teste funcional em cadeia cinética fechada. Um resultado isolado não equivale a autorização automática de retorno ao esporte.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 53
+        }
+      ]
+    },
+    {
+      "id": "Q28",
+      "topic": "Reabilitação esportiva",
+      "stem": "Quais capacidades são desafiadas pelo Upper Quarter Y Test descrito?",
+      "options": [
+        "Somente força máxima de preensão manual.",
+        "Somente força de abdução sem apoio do membro superior.",
+        "Apenas amplitude passiva de rotação externa.",
+        "Estabilidade dinâmica, força, amplitude e propriocepção."
+      ],
+      "answer": 3,
+      "comment": "O teste reúne várias capacidades. O material também sugere comparar o desempenho entre os membros, sem tratar um único valor como diagnóstico.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 55
+        },
+        {
+          "source": "atletas",
+          "page": 56
+        }
+      ]
+    },
+    {
+      "id": "Q29",
+      "topic": "Reabilitação esportiva",
+      "stem": "O que a aula de atletas propõe ao analisar cada direção do Upper Quarter Y Test?",
+      "options": [
+        "Comparar o desempenho entre os membros dominante e não dominante.",
+        "Ignorar diferenças entre os lados.",
+        "Deduzir diretamente qual tendão está lesionado.",
+        "Aplicar um ponto de corte universal para cada direção, apresentado no slide."
+      ],
+      "answer": 0,
+      "comment": "O slide 56 informa que não apresenta referências para cada direção individual e destaca a comparação entre membros. Essa observação é delimitada ao material da aula.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 56
+        }
+      ]
+    },
+    {
+      "id": "Q30",
+      "topic": "Reabilitação esportiva",
+      "stem": "Qual sequência resume a escada de reabilitação no encerramento da aula de atletas?",
+      "options": [
+        "Treinar apenas força máxima sem verificar amplitude.",
+        "Retornar ao jogo, treinar potência e só depois avaliar dor.",
+        "Reduzir dor, restaurar amplitude, restabelecer força, treinar propriocepção e função.",
+        "Imobilizar permanentemente e evitar função."
+      ],
+      "answer": 2,
+      "comment": "A escada organiza os objetivos até o treino funcional de retorno. A progressão depende da resposta clínica e das demandas da modalidade, não apenas do prazo estimado.",
+      "refs": [
+        {
+          "source": "atletas",
+          "page": 68
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "ombro": {
+    "title": "Reabilitação do complexo articular do ombro · v2",
+    "file": "assets/pdfs/ombro_v2.pdf",
+    "pages": 74,
+    "origin": "Aula_Reabilitacao_Ombro_v2.pdf · 74 páginas · arquivo confirmado pelo professor",
+    "sha256": "f78d548319af376506577c7673cdba3533ccfdbf970beb4fb95bac8de1794c4e"
+  },
+  "atletas": {
+    "title": "Reabilitação dos membros superiores · 2026",
+    "file": "assets/pdfs/atletas_2026.pdf",
+    "pages": 69,
+    "origin": "Anexo da conversa Gerar formulário importável",
+    "sha256": "23698d03a3b5d3e8d081d05148e67c6395c78a320805b8afad38e9b57b9e05e8"
+  }
+}

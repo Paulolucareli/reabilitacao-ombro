@@ -1,0 +1,47 @@
+APLICATIVO OMBRO — ARQUIVOS RECUPERADOS
+
+O ZIP COMPLETO inclui código, 30 questões, animações, dois vídeos e dois PDFs.
+O ZIP LEVE inclui código, questões e animações, mas NÃO inclui vídeos nem PDFs.
+Na versão leve, as videoaulas mostram um aviso e os slides originais não podem
+ser exibidos. A avaliação e os comentários continuam disponíveis após configurar
+o acesso e o banco (ou na demonstração local).
+Não há resultados de alunos, credenciais reais ou banco de demonstração no ZIP.
+
+COMO ENVIAR AO GITHUB
+1. Extraia Aplicativo_Ombro_LEVE.zip.
+2. Abra https://github.com/Paulolucareli/reabilitacao-ombro
+3. Use Add file > Upload files, ou uploading an existing file se estiver vazio.
+4. Envie o CONTEÚDO extraído, mantendo as pastas content/ e tests/.
+   app.py, core.py e requirements.txt devem ficar na raiz do repositório.
+   Envie também .streamlit/config.toml e .streamlit/secrets.toml.example
+   se desejar usar as configurações e o exemplo. No Mac, Command+Shift+.
+   mostra arquivos e pastas ocultos.
+5. Confirme em Commit changes.
+6. Para incluir os materiais, use o pacote completo e adicione os arquivos
+   assets/videos/ombro.mp4, assets/videos/atleta.mp4,
+   assets/pdfs/ombro_v2.pdf e assets/pdfs/atletas_2026.pdf.
+   Para arquivos grandes, use Git/GitHub Desktop em vez do envio pelo navegador.
+   O ZIP completo é um backup; não envie o próprio ZIP para executar o app.
+
+COMO PUBLICAR NO STREAMLIT
+1. Abra https://share.streamlit.io e entre com sua conta GitHub.
+2. Clique em Create app e selecione Paulolucareli/reabilitacao-ombro,
+   a branch que contém os arquivos (normalmente main) e app.py.
+3. Em Advanced settings, selecione Python 3.14, usado no projeto recuperado.
+4. Antes de liberar para os alunos, configure PostgreSQL externo e login.
+   O README.md explica a configuração. Use .streamlit/secrets.toml.example
+   como modelo para os Secrets do Streamlit, preenchendo os valores reais.
+   Inclua DATABASE_URL, PSEUDONYM_SECRET, TEACHER_EMAILS, STUDENT_EMAILS
+   e os campos de autenticação. Configure a URL de retorno no provedor de login.
+   Não envie segredos reais ao GitHub e não ative DEMO_MODE na hospedagem.
+5. Clique em Deploy. Sem autenticação configurada, o aplicativo exibe um aviso
+   de configuração e mantém as aulas/avaliações fechadas. Isso é esperado.
+6. Teste com contas de professor e aluno antes de compartilhar o link.
+
+TESTAR NO MAC
+Abra INICIAR_DEMO.command ou siga o README.md.
+A demonstração é somente local e usa dados de teste.
+
+O repositório e a hospedagem não foram alterados por esta recuperação.
+Documentação oficial:
+https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy
