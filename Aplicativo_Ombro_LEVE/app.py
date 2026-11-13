@@ -186,7 +186,6 @@ if area=='Aulas e animações':
         st.video(str(video_path))
     else:
         st.info('Esta versão está sem os vídeos. Adicione ombro.mp4 e atleta.mp4 em assets/videos para disponibilizar as aulas. As animações e a avaliação continuam disponíveis.')
-    st.warning('A avaliação esportiva utiliza o PDF de 2026. No caso da nadadora, considere tendinopatia do manguito SEM rotura. O vídeo escolhido é anterior; outras diferenças ainda podem exigir revisão do professor.')
     with st.expander('Referências e uso do conteúdo'):
         st.write('Conteúdo educacional para profissionais e estudantes. Condutas e prazos dos slides precisam ser contextualizados; não são protocolos individuais de atendimento.')
         st.write('Ombro v2: 74 páginas. Atletas 2026: 69 páginas. Os slides associados às questões aparecem após a entrega. Os PDFs completos não são disponibilizados para download pelo aplicativo.')
