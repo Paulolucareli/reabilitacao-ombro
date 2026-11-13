@@ -52,6 +52,7 @@ def test_complete_exam_feedback_and_navigation(app):
 
 def test_default_is_closed(monkeypatch):
     monkeypatch.setenv('DEMO_MODE','false')
+    monkeypatch.setenv('RESULT_MODE','database')
     app=AppTest.from_file(str(ROOT/'app.py')).run()
     assert not app.exception
     assert not app.get('video') and not app.get('dataframe')

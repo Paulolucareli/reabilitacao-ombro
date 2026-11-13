@@ -1,47 +1,47 @@
-APLICATIVO OMBRO — ARQUIVOS RECUPERADOS
+RESULTADOS POR E-MAIL — CONFIGURAÇÃO ATUAL
 
-O ZIP COMPLETO inclui código, 30 questões, animações, dois vídeos e dois PDFs.
-O ZIP LEVE inclui código, questões e animações, mas NÃO inclui vídeos nem PDFs.
-Na versão leve, as videoaulas mostram um aviso e os slides originais não podem
-ser exibidos. A avaliação e os comentários continuam disponíveis após configurar
-o acesso e o banco (ou na demonstração local).
-Não há resultados de alunos, credenciais reais ou banco de demonstração no ZIP.
+Destino fixo: paulolucareli@uni9.pro.br
+Modo padrão: email. Não exige conta Google dos alunos nem PostgreSQL.
+As aulas ficam abertas. Não existe painel público de notas ou professor.
+A avaliação pede nome e e-mail, informados pelo aluno e não verificados.
+Ao entregar, o professor recebe nota, respostas, data, versão e CSV anexo.
+O envio é feito por HTTPS usando Resend. Aceitação pelo serviço não significa
+entrega garantida na caixa de entrada: confira a caixa, spam e o painel Resend.
 
-COMO ENVIAR AO GITHUB
-1. Extraia Aplicativo_Ombro_LEVE.zip.
-2. Abra https://github.com/Paulolucareli/reabilitacao-ombro
-3. Use Add file > Upload files, ou uploading an existing file se estiver vazio.
-4. Envie o CONTEÚDO extraído, mantendo as pastas content/ e tests/.
-   app.py, core.py e requirements.txt devem ficar na raiz do repositório.
-   Envie também .streamlit/config.toml e .streamlit/secrets.toml.example
-   se desejar usar as configurações e o exemplo. No Mac, Command+Shift+.
-   mostra arquivos e pastas ocultos.
-5. Confirme em Commit changes.
-6. Para incluir os materiais, use o pacote completo e adicione os arquivos
-   assets/videos/ombro.mp4, assets/videos/atleta.mp4,
-   assets/pdfs/ombro_v2.pdf e assets/pdfs/atletas_2026.pdf.
-   Para arquivos grandes, use Git/GitHub Desktop em vez do envio pelo navegador.
-   O ZIP completo é um backup; não envie o próprio ZIP para executar o app.
+ATIVAR NO STREAMLIT
+1. Crie sua conta em https://resend.com usando paulolucareli@uni9.pro.br.
+2. Crie uma API key com permissão de envio. Guarde-a fora do GitHub e do chat.
+3. No Streamlit, abra Settings > Secrets do aplicativo.
+4. Copie o exemplo .streamlit/secrets.toml.example e coloque a chave real
+   diretamente no Streamlit. Mantenha RESULT_MODE="email".
+5. Para o teste inicial, EMAIL_FROM pode ser
+   "Reabilitação do Ombro <onboarding@resend.dev>".
+   Esse remetente só envia para o endereço da própria conta Resend.
+   Para uso regular, use um domínio verificado autorizado pelo proprietário;
+   não use o domínio uni9.pro.br como remetente sem essa autorização.
+6. Salve e faça uma entrega de teste. Confira o e-mail recebido, o CSV, a nota
+   e os eventos de entrega no Resend antes de convidar a turma.
+7. Verifique limites e condições do serviço conforme o tamanho da turma.
 
-COMO PUBLICAR NO STREAMLIT
-1. Abra https://share.streamlit.io e entre com sua conta GitHub.
-2. Clique em Create app e selecione Paulolucareli/reabilitacao-ombro,
-   a branch que contém os arquivos (normalmente main) e app.py.
-3. Em Advanced settings, selecione Python 3.14, usado no projeto recuperado.
-4. Antes de liberar para os alunos, configure PostgreSQL externo e login.
-   O README.md explica a configuração. Use .streamlit/secrets.toml.example
-   como modelo para os Secrets do Streamlit, preenchendo os valores reais.
-   Inclua DATABASE_URL, PSEUDONYM_SECRET, TEACHER_EMAILS, STUDENT_EMAILS
-   e os campos de autenticação. Configure a URL de retorno no provedor de login.
-   Não envie segredos reais ao GitHub e não ative DEMO_MODE na hospedagem.
-5. Clique em Deploy. Sem autenticação configurada, o aplicativo exibe um aviso
-   de configuração e mantém as aulas/avaliações fechadas. Isso é esperado.
-6. Teste com contas de professor e aluno antes de compartilhar o link.
+Se houver falha, o app mantém a tentativa nesta sessão e permite reenvio do
+mesmo conteúdo. As respostas ficam bloqueadas após a primeira tentativa de
+envio. O serviço evita duplicação da mesma tentativa por até 24 horas;
+o aplicativo limita o reenvio a 23 horas. Fechar a sessão pode perder respostas
+e comprovantes. Nova sessão/tentativa pode gerar novo e-mail. Não há histórico
+permanente no Streamlit e não há verificação de identidade nem fiscalização.
 
-TESTAR NO MAC
-Abra INICIAR_DEMO.command ou siga o README.md.
-A demonstração é somente local e usa dados de teste.
+DADOS
+O app não grava resultados em banco ou arquivos. Nome, e-mail e respostas são
+processados pelo Streamlit e pelo Resend; a mensagem fica no e-mail do professor.
+A retenção dos registros do provedor segue suas condições e a do e-mail deve ser
+definida pelo professor. O aviso ao aluno informa o destino e esse tratamento.
 
-O repositório e a hospedagem não foram alterados por esta recuperação.
-Documentação oficial:
-https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy
+COMPATIBILIDADE
+RESULT_MODE="database" mantém o fluxo antigo de login OIDC + PostgreSQL,
+que continua fechado se as configurações necessárias não forem preenchidas.
+DEMO_MODE=true é somente para teste local. Não habilite na hospedagem.
+Os dois vídeos e PDFs completos continuam em assets/.
+
+REFERÊNCIAS
+https://resend.com/docs/api-reference/emails/send-email
+https://resend.com/docs/dashboard/emails/idempotency-keys

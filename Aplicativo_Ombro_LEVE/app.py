@@ -5,6 +5,7 @@ import uuid
 from pathlib import Path
 import streamlit as st
 from core import ROOT, Store, export_csv, learner_id, load_content, role_for
+from email_results import RESULTS_TO, make_submission, send_result, validate_student, result_csv
 
 st.set_page_config(page_title='Ombro · Aprender e avaliar', page_icon='◉', layout='centered')
 st.markdown('''<style>
@@ -25,7 +26,11 @@ def emails(key):
     raw = config(key, [])
     return raw.split(',') if isinstance(raw, str) else list(raw)
 
+email_mode = str(config('RESULT_MODE', 'email')).lower() == 'email' and str(config('DEMO_MODE', 'false')).lower() != 'true'
+
 def identity():
+    if email_mode:
+        return 'student', 'sessao', False
     demo = str(config('DEMO_MODE', 'false')).lower() == 'true'
     if demo:
         st.warning('Demonstração local · dados de teste. Não use este modo com alunos reais.')
@@ -70,15 +75,17 @@ try:
 except (ValueError, OSError, KeyError):
     st.error('Não foi possível validar o conteúdo. Consulte o administrador.')
     st.stop()
-url = 'sqlite:///'+str(ROOT/'data/demo.db') if demo else str(config('DATABASE_URL',''))
-if not demo and not url.startswith(('postgres://','postgresql://')):
-    st.error('Configure DATABASE_URL com PostgreSQL para gravar os resultados da turma.')
-    st.stop()
-try:
-    store = Store(url)
-except Exception:
-    st.error('Armazenamento indisponível. As avaliações não podem ser entregues agora.')
-    st.stop()
+store = None
+if not email_mode:
+    url = 'sqlite:///'+str(ROOT/'data/demo.db') if demo else str(config('DATABASE_URL',''))
+    if not demo and not url.startswith(('postgres://','postgresql://')):
+        st.error('Configure DATABASE_URL com PostgreSQL para gravar os resultados da turma.')
+        st.stop()
+    try:
+        store = Store(url)
+    except Exception:
+        st.error('Armazenamento indisponível. As avaliações não podem ser entregues agora.')
+        st.stop()
 
 @st.cache_data(show_spinner=False)
 def slide(source_id, page, expected_sha):
@@ -97,7 +104,11 @@ def review(row):
     b.metric('Acertos', f"{row['correct']} / {row['total']}")
     c.metric('Aproveitamento', f"{100*row['correct']/row['total']:.0f}%")
     st.caption(f"Tentativa {row['attempt_id']} · edição {row['version']} · {row['created_at'][:10]}")
-    st.download_button('Baixar meu resultado', export_csv([row], True), 'meu_resultado.csv', 'text/csv')
+    if email_mode:
+        st.caption('Nome e e-mail informados pelo aluno, sem verificação de identidade.')
+        st.download_button('Baixar meu resultado', result_csv(row), 'meu_resultado.csv', 'text/csv')
+    else:
+        st.download_button('Baixar meu resultado', export_csv([row], True), 'meu_resultado.csv', 'text/csv')
     st.subheader('Gabarito comentado')
     for q in snap['bank']['questions']:
         chosen = snap['answers'][q['id']]
@@ -161,7 +172,7 @@ if role == 'teacher':
         st.stop()
 else:
     area=st.sidebar.radio('Área',['Aulas e animações','Avaliação','Meu resultado'])
-    st.sidebar.caption(f'Seu código: {sid}')
+    if not email_mode: st.sidebar.caption(f'Seu código: {sid}')
 
 if area=='Aulas e animações':
     st.caption('APRENDER · PRATICAR · REVISAR')
@@ -188,18 +199,39 @@ if area=='Aulas e animações':
 
 elif area=='Avaliação':
     st.title('Avaliação de aprendizagem')
+    if email_mode:
+        st.caption(f'Resultados enviados ao professor: {RESULTS_TO}')
+        if not config('RESEND_API_KEY') or not config('EMAIL_FROM'):
+            st.info('As aulas estão disponíveis. O envio das avaliações aguarda configuração pelo professor.')
+            st.stop()
+        if st.session_state.get('email_error'):
+            st.error(st.session_state.email_error)
+            st.caption('O reenvio utiliza a mesma identificação e as mesmas respostas. Não feche esta página.')
     if st.session_state.get('completed'):
         st.success('Avaliação entregue. Abra Meu resultado para revisar os comentários e slides.')
         if st.button('Iniciar nova tentativa'):
             for key in list(st.session_state):
-                if key not in ('identity',): del st.session_state[key]
+                if key not in ('identity', 'student_name', 'student_email'): del st.session_state[key]
             st.rerun()
         st.stop()
     st.caption('30 questões · quatro alternativas · nota de 0 a 10 · peso igual')
     with st.expander('Como seus dados são usados',expanded=not st.session_state.get('notice',False)):
-        st.write(f'O professor recebe seu código, respostas, nota, data e versão da prova. Nome e e-mail não são gravados no banco de resultados. Prazo de referência: {config("RETENTION_DAYS",180)} dias, aplicado pelo responsável no painel. Para solicitar exclusão, informe seu código ao professor. As respostas em andamento ficam nesta sessão e podem ser perdidas ao fechar ou recarregar a página.')
+        if email_mode:
+            st.write(f'Na entrega, seu nome e e-mail informados, respostas, nota, data e versão serão enviados a {RESULTS_TO} pelo serviço Resend. Não há verificação de identidade. O aplicativo não mantém banco de notas; o professor guarda os resultados em seu e-mail. O Resend processa e pode manter registros do envio conforme sua política. Para solicitar exclusão, contate o professor. As respostas e o resultado ficam nesta sessão e podem ser perdidos ao fechar ou recarregar a página.')
+        else:
+            st.write(f'O professor recebe seu código, respostas, nota, data e versão da prova. Nome e e-mail não são gravados no banco de resultados. Prazo de referência: {config("RETENTION_DAYS",180)} dias, aplicado pelo responsável no painel. Para solicitar exclusão, informe seu código ao professor. As respostas em andamento ficam nesta sessão e podem ser perdidas ao fechar ou recarregar a página.')
         st.checkbox('Li estas informações',key='notice')
     if not st.session_state.get('notice'): st.stop()
+    if email_mode:
+        locked = bool(st.session_state.get('pending_email') or st.session_state.get('completed'))
+        name = st.text_input('Nome completo', key='student_name', max_chars=120, disabled=locked)
+        email = st.text_input('Seu e-mail', key='student_email', max_chars=254, disabled=locked)
+        try:
+            validate_student(name, email)
+        except ValueError as exc:
+            st.info(str(exc))
+            st.stop()
+
     st.session_state.setdefault('answers',{})
     st.session_state.setdefault('position',0)
     st.session_state.setdefault('attempt_id',str(uuid.uuid4()))
@@ -212,7 +244,7 @@ elif area=='Avaliação':
     def record_answer(question_id, widget_key):
         value=st.session_state.get(widget_key)
         if value is not None: st.session_state.answers[question_id]=value
-    chosen=st.radio('Selecione uma alternativa',range(4),index=answers.get(q['id']),format_func=lambda i:f"{'ABCD'[i]}. {q['options'][i]}",key=f"choice_{q['id']}",on_change=record_answer,args=(q['id'],f"choice_{q['id']}"))
+    chosen=st.radio('Selecione uma alternativa',range(4),index=answers.get(q['id']),format_func=lambda i:f"{'ABCD'[i]}. {q['options'][i]}",key=f"choice_{q['id']}",disabled=bool(st.session_state.get('pending_email')),on_change=record_answer,args=(q['id'],f"choice_{q['id']}"))
     if chosen is not None: answers[q['id']]=chosen
     a,b=st.columns(2)
     def move(delta):
@@ -224,17 +256,36 @@ elif area=='Avaliação':
     if missing: st.caption('Pendentes: '+', '.join(missing))
     confirm=st.checkbox('Revisei minhas respostas e desejo entregar',disabled=bool(missing))
     if st.button('Entregar avaliação',type='primary',disabled=bool(missing) or not confirm):
-        try:
-            row=store.save(st.session_state.attempt_id,sid,bank,answers,sources)
-            st.session_state.completed=row['attempt_id']
-            st.success('Entrega gravada. Abra Meu resultado para revisar.')
+        if email_mode:
+            try:
+                if 'pending_email' not in st.session_state:
+                    st.session_state.pending_email = make_submission(name, email, bank, answers, sources)
+                row = st.session_state.pending_email
+                receipt = send_result(row, str(config('RESEND_API_KEY', '')), str(config('EMAIL_FROM', '')))
+                st.session_state.email_result = dict(row, email_receipt=receipt)
+                st.session_state.completed = row['attempt_id']
+                st.session_state.pop('email_error', None)
+            except Exception:
+                st.session_state.email_error = 'O envio não foi confirmado. Suas respostas foram mantidas nesta sessão. Tente entregar novamente; se persistir, contate o professor.'
             st.rerun()
-        except Exception:
-            st.error('A entrega não foi confirmada. Suas respostas foram mantidas nesta sessão. Tente novamente; a mesma entrega não será duplicada.')
+        else:
+            try:
+                row=store.save(st.session_state.attempt_id,sid,bank,answers,sources)
+                st.session_state.completed=row['attempt_id']
+                st.success('Entrega gravada. Abra Meu resultado para revisar.')
+                st.rerun()
+            except Exception:
+                st.error('A entrega não foi confirmada. Suas respostas foram mantidas nesta sessão. Tente novamente; a mesma entrega não será duplicada.')
 
 elif area=='Meu resultado':
-    try: rows=store.own(sid)
-    except Exception: st.error('Resultados indisponíveis no momento.');st.stop()
+    if email_mode:
+        rows = [st.session_state.email_result] if st.session_state.get('email_result') else []
+        if rows:
+            st.success('O serviço de e-mail aceitou o envio ao professor. Isso não garante a chegada à caixa de entrada.')
+            st.caption(f"Protocolo de envio: {rows[0]['email_receipt']} · Guarde seu resultado antes de fechar a página.")
+    else:
+        try: rows=store.own(sid)
+        except Exception: st.error('Resultados indisponíveis no momento.');st.stop()
     if not rows:
         st.title('Meu resultado');st.info('Entregue a avaliação para ver nota, comentários e slides originais.')
     else:

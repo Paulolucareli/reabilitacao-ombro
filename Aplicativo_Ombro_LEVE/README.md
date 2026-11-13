@@ -1,6 +1,6 @@
 # Ombro · Aprender e avaliar
 
-Aplicativo Streamlit com duas videoaulas, quatro animações de 24 segundos, 30 questões de múltipla escolha, nota, gabarito comentado e acesso às páginas originais dos PDFs. O professor acompanha e exporta resultados. O projeto está preparado para publicação; não foi publicado em um serviço externo.
+Aplicativo Streamlit com duas videoaulas, quatro animações de 24 segundos, 30 questões de múltipla escolha, nota, gabarito comentado e acesso às páginas originais dos PDFs. No modo atual, os resultados são enviados por e-mail ao professor, sem login dos alunos e sem banco de notas. Consulte `LEIA_PRIMEIRO.txt` para configurar o envio. O aplicativo só confirma o envio depois da aceitação pelo serviço, que não garante chegada à caixa de entrada.
 
 ## Experimentar no computador
 
@@ -30,7 +30,9 @@ O aluno encontra vídeos antes das animações e da avaliação. Não há bloque
 
 O banco completo para revisão editorial está em `QUESTOES.md`; a versão estruturada está em `content/questions.json`. São 3 questões de anatomia/biomecânica, 4 de discinese, 7 de dor relacionada ao manguito, 4 de trauma, 4 de artroplastia e 8 de esporte. O gabarito não fica acessível pela interface do aluno antes da entrega. Mantenha o repositório privado, pois o arquivo de conteúdo contém o gabarito.
 
-## Publicar para a turma
+## Fluxo opcional com login e banco de resultados
+
+As seções abaixo sobre PostgreSQL, autenticação, histórico e painel referem-se ao modo opcional `RESULT_MODE="database"`. No modo padrão `email`, siga `LEIA_PRIMEIRO.txt`; o painel de professor não fica disponível e os resultados existem apenas na sessão e nos e-mails enviados.
 
 ### Opção principal: Streamlit Community Cloud + PostgreSQL externo
 
