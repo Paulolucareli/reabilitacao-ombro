@@ -233,11 +233,11 @@ elif area=='Avaliação':
             st.stop()
 
     st.session_state.setdefault('answers',{})
-    st.session_state.setdefault('position',0)
+    st.session_state.setdefault('question_selector',st.session_state.get('position',0))
     st.session_state.setdefault('attempt_id',str(uuid.uuid4()))
     answers=st.session_state.answers
     st.progress(len(answers)/30,text=f'{len(answers)} de 30 respondidas')
-    position=st.selectbox('Ir para questão',range(30),index=st.session_state.position,key='question_selector',format_func=lambda i:f'{i+1:02}')
+    position=st.selectbox('Ir para questão',range(30),key='question_selector',format_func=lambda i:f'{i+1:02}')
     st.session_state.position=position
     q=bank['questions'][position]
     st.caption(q['topic']);st.subheader(f"{position+1}. {q['stem']}")
@@ -248,12 +248,16 @@ elif area=='Avaliação':
     if chosen is not None: answers[q['id']]=chosen
     a,b=st.columns(2)
     def move(delta):
-        st.session_state.position=max(0,min(29,position+delta))
-        del st.session_state['question_selector']
-    if a.button('Anterior',disabled=position==0): move(-1);st.rerun()
-    if b.button('Próxima',disabled=position==29): move(1);st.rerun()
+        # Atualiza o seletor ANTES de recriar os widgets no próximo ciclo.
+        # Apagar a chave após renderizar o seletor permite que o navegador
+        # restaure o número antigo e desfaça o avanço dos botões.
+        st.session_state.question_selector=max(0,min(29,st.session_state.question_selector+delta))
+        st.session_state.position=st.session_state.question_selector
+    a.button('Anterior',disabled=position==0,on_click=move,args=(-1,))
+    b.button('Próxima',disabled=position==29,on_click=move,args=(1,))
     missing=[str(i+1) for i,item in enumerate(bank['questions']) if item['id'] not in answers]
     if missing: st.caption('Pendentes: '+', '.join(missing))
+    else: st.info('Todas as 30 questões foram respondidas. Marque a confirmação abaixo e clique em Entregar avaliação.')
     confirm=st.checkbox('Revisei minhas respostas e desejo entregar',disabled=bool(missing))
     if st.button('Entregar avaliação',type='primary',disabled=bool(missing) or not confirm):
         if email_mode:

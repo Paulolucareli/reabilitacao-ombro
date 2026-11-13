@@ -99,3 +99,31 @@ def test_unconfigured_email_allows_lessons_not_delivery(monkeypatch):
     by_label(app.radio, 'Área').set_value('Avaliação').run()
     assert not app.exception and 'aguarda configuração' in app.info[0].value
     assert not app.button
+
+
+def test_all_questions_with_next_button_and_email(monkeypatch):
+    monkeypatch.setenv('DEMO_MODE', 'false')
+    monkeypatch.setenv('RESULT_MODE', 'email')
+    monkeypatch.setenv('RESEND_API_KEY', 'test-key')
+    monkeypatch.setenv('EMAIL_FROM', 'sender@example.com')
+    sent = []
+    def fake_send(row, *args):
+        sent.append(row)
+        return 'navigation-receipt'
+    monkeypatch.setattr(email_results, 'send_result', fake_send)
+    app = AppTest.from_file(str(ROOT/'app.py'), default_timeout=30).run()
+    by_label(app.radio, 'Área').set_value('Avaliação').run()
+    by_label(app.checkbox, 'Li estas informações').check().run()
+    by_label(app.text_input, 'Nome completo').set_value('Aluno de teste').run()
+    by_label(app.text_input, 'Seu e-mail').set_value('aluno@example.com').run()
+    bank, _ = load_content()
+    for index, question in enumerate(bank['questions']):
+        assert app.subheader[0].value.startswith(f'{index+1}. ')
+        by_label(app.radio, 'Selecione uma alternativa').set_value(question['answer']).run()
+        assert not app.exception
+        if index < 29:
+            by_label(app.button, 'Próxima').click().run()
+    assert len(app.session_state['answers']) == 30
+    by_label(app.checkbox, 'Revisei minhas respostas e desejo entregar').check().run()
+    by_label(app.button, 'Entregar avaliação').click().run()
+    assert not app.exception and len(sent) == 1 and sent[0]['correct'] == 30
