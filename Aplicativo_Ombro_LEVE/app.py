@@ -165,35 +165,30 @@ def teacher():
             store.purge(days);st.rerun()
 
 if role == 'teacher':
-    area=st.sidebar.radio('Área',['Resultados','Aulas e animações'])
+    area=st.sidebar.radio('Área',['Resultados','Videoaulas'])
     if area=='Resultados':
         try: teacher()
         except Exception: st.error('Não foi possível consultar ou alterar os resultados. Tente novamente.')
         st.stop()
 else:
-    area=st.sidebar.radio('Área',['Aulas e animações','Avaliação','Meu resultado'])
+    area=st.sidebar.radio('Área',['Videoaulas','Avaliação','Meu resultado'])
     if not email_mode: st.sidebar.caption(f'Seu código: {sid}')
 
-if area=='Aulas e animações':
+if area=='Videoaulas':
     st.caption('APRENDER · PRATICAR · REVISAR')
     st.title('Reabilitação do ombro')
-    st.write('Duas aulas, quatro mecanismos e uma avaliação para consolidar o raciocínio clínico.')
-    st.info('Comece pelos vídeos e explore as animações. Quando estiver pronto, abra a avaliação. Não é necessário repetir as aulas para iniciar a prova.')
-    st.header('1. Videoaulas')
+    st.write('Duas videoaulas e uma avaliação para consolidar o raciocínio clínico.')
+    st.info('Comece pelos vídeos. Quando estiver pronto, abra a avaliação. Não é necessário repetir as aulas para iniciar a prova.')
+    st.header('Videoaulas')
     video=st.selectbox('Escolha a aula',['Reabilitação do ombro','Reabilitação do ombro no atleta'])
     video_path = ROOT/'assets/videos'/('ombro.mp4' if video=='Reabilitação do ombro' else 'atleta.mp4')
     if video_path.is_file():
         st.video(str(video_path))
     else:
-        st.info('Esta versão está sem os vídeos. Adicione ombro.mp4 e atleta.mp4 em assets/videos para disponibilizar as aulas. As animações e a avaliação continuam disponíveis.')
+        st.info('Esta videoaula está indisponível no momento. A avaliação continua disponível.')
     with st.expander('Referências e uso do conteúdo'):
         st.write('Conteúdo educacional para profissionais e estudantes. Condutas e prazos dos slides precisam ser contextualizados; não são protocolos individuais de atendimento.')
         st.write('Ombro v2: 74 páginas. Atletas 2026: 69 páginas. Os slides associados às questões aparecem após a entrega. Os PDFs completos não são disponibilizados para download pelo aplicativo.')
-    st.header('2. Mecanismos em movimento')
-    animation=st.selectbox('Explore um mecanismo',['Ritmo escapuloumeral','Pares de força','Discinese e alamento','Luxação anterior'])
-    idx=['Ritmo escapuloumeral','Pares de força','Discinese e alamento','Luxação anterior'].index(animation)
-    st.iframe((ROOT/'content/animations.html').read_text().replace('__SCENE__',str(idx)),height='content',alt=animation)
-    st.caption('Esquemas originais em 2D, simplificados para ensino. Não reproduzem uma medição individual nem substituem o exame clínico. Controles por teclado disponíveis.')
     if role=='student': st.write('Próximo passo: abra **Avaliação** no menu.')
 
 elif area=='Avaliação':
